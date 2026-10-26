@@ -4,8 +4,8 @@
 [[plugin]]
 id = "sviatyipavlo/cps"
 name = "CPS Counter"
-version = "1.0.0"
-updated_at = 1793029379
+version = "1.1.0"
+updated_at = 1793032928
 added_at = 1793029379
 author = "sviatyipavlo"
 license = "MIT"

@@ -3,11 +3,14 @@
 --
 -- scripts/cps.py reads every mouse evdev node and streams "<left> <right>" lines
 -- whenever the 1-second sliding-window counts change; this widget only renders.
+-- The stream callback just records the counts: a render() tree is only redrawn
+-- from update() (or on hover/click), so update() polls a dirty flag instead.
 -- Click the widget to reset the session peak shown in the tooltip. On a vertical
 -- bar the glyph and the two counts are stacked so they fit the bar width.
 
 local left, right = 0, 0
 local peakLeft, peakRight = 0, 0
+local dirty = true
 
 local function render()
   if barWidget.isVertical() then
@@ -32,7 +35,7 @@ local function onLine(line)
   left, right = tonumber(l), tonumber(r)
   peakLeft = math.max(peakLeft, left)
   peakRight = math.max(peakRight, right)
-  render()
+  dirty = true
 end
 
 local script = (noctalia.pluginDir() or ".") .. "/scripts/cps.py"
@@ -41,13 +44,16 @@ if not noctalia.runStream(command, onLine) then
   noctalia.notifyError("CPS Counter", "Unable to start the mouse reader")
 end
 
-render()
+noctalia.setUpdateInterval(100)
 
 function update()
-  noctalia.setUpdateInterval(60000)
+  if dirty then
+    dirty = false
+    render()
+  end
 end
 
 function onClick()
   peakLeft, peakRight = left, right
-  render()
+  dirty = true
 end

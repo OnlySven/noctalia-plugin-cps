@@ -6,7 +6,7 @@
 
 id = "sviatyipavlo/cps"
 name = "CPS Counter"
-version = "1.1.0"
+version = "1.1.1"
 plugin_api = 28
 author = "sviatyipavlo"
 license = "MIT"

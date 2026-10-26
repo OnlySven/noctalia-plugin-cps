@@ -1,0 +1,20 @@
+# CPS Counter - live left/right mouse clicks per second in the bar.
+#
+# Reads mouse button presses straight from /dev/input (your user must be in the
+# `input` group) through scripts/cps.py, which keeps a 1-second sliding window
+# and streams "<left> <right>" lines whenever the counts change.
+
+id = "sviatyipavlo/cps"
+name = "CPS Counter"
+version = "1.0.0"
+plugin_api = 28
+author = "sviatyipavlo"
+license = "MIT"
+dependencies = ["python3"]
+icon = "mouse"
+description = "Shows left and right mouse clicks per second."
+tags = ["utility", "input"]
+
+[[widget]]
+id = "counter"
+entry = "counter.luau"

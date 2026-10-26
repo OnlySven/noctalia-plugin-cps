@@ -1,0 +1,15 @@
+# Local plugin source catalog. One [[plugin]] row per plugin subdirectory;
+# the per-plugin plugin.toml stays authoritative. Keep version/plugin_api in sync.
+
+[[plugin]]
+id = "sviatyipavlo/cps"
+name = "CPS Counter"
+version = "1.0.0"
+updated_at = 1793029379
+added_at = 1793029379
+author = "sviatyipavlo"
+license = "MIT"
+icon = "mouse"
+description = "Shows left and right mouse clicks per second."
+plugin_api = 28
+tags = ["utility", "input"]
